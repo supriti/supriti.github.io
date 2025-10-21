@@ -1,1 +1,105 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supriti Singh | Senior Developer, C++ Performance</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic links --><script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles to ensure smooth scrolling and Inter font */
+        html { scroll-behavior: smooth; }
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Darker, professional background */
+        body {
+            background-color: #1a202c; /* Equivalent to dark-blue/charcoal */
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen">
+
+    <!-- Header / Hero Section --><header class="py-16 md:py-24 max-w-4xl mx-auto px-6">
+        <div class="text-center space-y-4">
+            <!-- ORIGINAL UPLOADED PHOTO - Directly referenced by filename -->
+            <!-- The Canvas environment handles the display of uploaded files via filename -->
+            <img src="supritiPhoto.jpeg" 
+                 alt="Supriti Singh - Professional Headshot" 
+                 class="w-32 h-32 rounded-full mx-auto object-cover shadow-lg border-4 border-blue-500">
+            
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
+                SUPRITI SINGH
+            </h1>
+            
+            <p class="text-2xl md:text-3xl font-light text-blue-300">
+                Senior Software Developer & Architect
+            </p>
+
+            <!-- MERGED BIO TEXT -->
+            <p class="text-lg md:text-xl max-w-2xl mx-auto pt-4 text-gray-400">
+                I'm a Senior Software Developer based in Germany. My work centers on **architectural leadership** and optimization for **low-latency, high-throughput C++ systems**. I dive deep into whatever sparks my curiosity—from Linux kernel internals and filesystems to C++ performance—sharing both my **technical findings** and personal reflections on my Substack.
+            </p>
+
+            <!-- Social Links --><nav class="flex justify-center space-x-6 pt-6">
+                <a href="https://github.com/supriti" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                    <span class="text-lg">GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/supritis" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    <span class="text-lg">LinkedIn</span>
+                </a>
+                <a href="https://lifeandalgorithms.substack.com/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
+                    <i data-lucide="newspaper" class="w-6 h-6"></i>
+                    <span class="text-lg">Substack</span>
+                </a>
+                <a href="mailto:supritisingh08@gmail.com" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                    <span class="text-lg">Email</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pb-20">
+        <!-- Skills Section - Focused on C++ Performance and Leadership --><section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-blue-400 border-b border-blue-500/50 pb-2">Core Expertise</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <!-- C++ Performance and Low-Level --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
+                    <p class="font-semibold">C++ & Low-Latency</p>
+                    <p class="text-sm text-gray-400">Concurrency, Profiling, GTest</p>
+                </div>
+                <!-- Distributed Systems and Architecture --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <i data-lucide="layers-3" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
+                    <p class="font-semibold">Distributed Systems</p>
+                    <p class="text-sm text-gray-400">NFS, Ceph, Paxos, ZFS</p>
+                </div>
+                <!-- Kernel and Internals --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <i data-lucide="cpu" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
+                    <p class="font-semibold">Kernel & Internals</p>
+                    <p class="text-sm text-gray-400">Linux, I/O, LVM, Virtio</p>
+                </div>
+                <!-- Tools and DevOps --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <i data-lucide="gauge" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
+                    <p class="font-semibold">Performance Engineering</p>
+                    <p class="text-sm text-gray-400">Valgrind, FIO, Wireshark, CI/CD</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer --><footer class="py-6 border-t border-gray-700/50 mt-12">
+        <div class="max-w-4xl mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Supriti Singh. Built for GitHub Pages.</p>
+        </div>
+    </footer>
+    
+    <!-- Initialize Lucide Icons and Image Generation Script --><script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
