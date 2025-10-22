@@ -3,99 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supriti Singh | Senior Developer, C++ Performance</title>
-    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons for aesthetic links --><script src="https://unpkg.com/lucide@latest"></script>
+    <title>Supriti Singh | Senior Developer & Architect</title>
+    
+    <!-- Load Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load React and ReactDOM (CDNs) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Load Babel for on-the-fly JSX compilation in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Load Lucide Icons for aesthetic links -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         /* Custom styles to ensure smooth scrolling and Inter font */
         html { scroll-behavior: smooth; }
         :root {
             font-family: 'Inter', sans-serif;
         }
-        /* Darker, professional background */
         body {
-            background-color: #1a202c; /* Equivalent to dark-blue/charcoal */
+            background-color: #111827; /* Darker charcoal background */
+        }
+        /* Ensure the app takes up at least the full viewport height */
+        #root {
+            min-height: 100vh;
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen">
+<body class="text-gray-100">
 
-    <!-- Header / Hero Section --><header class="py-16 md:py-24 max-w-4xl mx-auto px-6">
-        <div class="text-center space-y-4">
-            <!-- PHOTO SECTION REMOVED - Space will now be centered and clean -->
-            
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
-                SUPRITI SINGH
-            </h1>
-            
-            <p class="text-2xl md:text-3xl font-light text-blue-300">
-                Senior Software Developer & Architect
-            </p>
+    <!-- This is where the React application will be mounted -->
+    <div id="root"></div>
 
-            <!-- MERGED BIO TEXT -->
-            <p class="text-lg md:text-xl max-w-2xl mx-auto pt-4 text-gray-400">
-                I'm a Senior Software Developer based in Germany. My work centers on **architectural leadership** and optimization for **low-latency, high-throughput C++ systems**. I dive deep into whatever sparks my curiosity—from Linux kernel internals and filesystems to C++ performance—sharing both my **technical findings** and personal reflections on my Substack.
-            </p>
+    <!-- The React application code goes here -->
+    <script type="text/babel">
+        // === DATA DEFINITIONS ===
+        // We now use a constant for the relative file path.
+        const PHOTO_FILE_PATH = "supritiPhoto.jpeg";
 
-            <!-- Social Links --><nav class="flex justify-center space-x-6 pt-6">
-                <a href="https://github.com/supriti" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
-                    <i data-lucide="github" class="w-6 h-6"></i>
-                    <span class="text-lg">GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/supritis" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
-                    <i data-lucide="linkedin" class="w-6 h-6"></i>
-                    <span class="text-lg">LinkedIn</span>
-                </a>
-                <a href="https://lifeandalgorithms.substack.com/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
-                    <i data-lucide="newspaper" class="w-6 h-6"></i>
-                    <span class="text-lg">Substack</span>
-                </a>
-                <a href="mailto:supritisingh08@gmail.com" class="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
-                    <i data-lucide="mail" class="w-6 h-6"></i>
-                    <span class="text-lg">Email</span>
-                </a>
-            </nav>
-        </div>
-    </header>
+        const PROFILE_DATA = {
+            name: "SUPRITI SINGH",
+            title: "Senior Software Developer & Architect",
+            bio: "I'm a Senior Software Developer based in Germany. My work centers on architectural leadership and optimization for low-latency, high-throughput C++ systems. I dive deep into whatever sparks my curiosity—from Linux kernel internals and filesystems to C++ performance—sharing both my technical findings and personal reflections on my Substack.",
+            social: [
+                { icon: 'github', href: "https://github.com/supriti", label: "GitHub" },
+                { icon: 'linkedin', href: "https://www.linkedin.com/in/supritis/", label: "LinkedIn" },
+                { icon: 'newspaper', href: "https://lifeandalgorithms.substack.com/", label: "Substack" },
+                { icon: 'mail', href: "mailto:supritisingh08@gmail.com", label: "Email" },
+            ],
+            expertise: [
+                { icon: 'zap', title: "C++ & Low-Latency", description: "Concurrency, Profiling, GTest", key: 'cpp' },
+                { icon: 'layers3', title: "Distributed Systems", description: "NFS, Ceph, Paxos, ZFS", key: 'dist' },
+                { icon: 'cpu', title: "Kernel & Internals", description: "Linux, I/O, LVM, Virtio", key: 'kernel' },
+                { icon: 'gauge', title: "Performance Engineering", description: "Valgrind, FIO, Wireshark, CI/CD", key: 'perf' },
+            ],
+            education: [
+                {
+                    degree: "Masters in Computer Science",
+                    institution: "Saarland University, Saarbrucken, Germany",
+                    duration: "09/2011 – 09/2014"
+                },
+                {
+                    degree: "Bachelors in Computer Science",
+                    institution: "University of Pune, Pune, India",
+                    duration: "07/2006 – 07/2010"
+                }
+            ],
+            certifications: [
+                { name: "Project Management Certificate", source: "Coursera", year: 2021 },
+                { name: "Google CodeF Mentoring Program", source: "Google", year: 2012 }
+            ],
+            projects: [
+                {
+                    title: "Master Thesis: Experimental comparison of Byzantine fault tolerant DHT",
+                    source: "Technical University of Munich",
+                    description: "Converted research into a working implementation of X-Vine, a Sybil-attack-resistant Distributed Hash Table (DHT), within the GNUnet secure P2P framework. Analyzed robustness, reliability, and performance against GNUnet's existing R5N DHT across diverse network topologies.",
+                    tech: "C, GNUnet, Distributed Systems"
+                },
+                {
+                    title: "Yet Another File System (YFS)",
+                    source: "Saarland University",
+                    description: "Built a multi-server distributed file system using FUSE. Implemented core file operations, caching, locking, and an extent server. Extended the Paxos algorithm and implemented a replicated lock server to ensure fault tolerance and consistency.",
+                    tech: "C++, FUSE, Paxos, Consistency"
+                },
+                {
+                    title: "Bachelor's Thesis: Virtio based Transcendent Memory",
+                    source: "University of Pune",
+                    description: "Implemented a mechanism using Virtio to efficiently share physical memory among virtual machines, making TMem portable across different hypervisors. Gained deep understanding of memory management and Linux kernel development.",
+                    tech: "Virtio, Linux Kernel, Device Drivers"
+                },
+                {
+                    title: "PintOS (Educational Operating System)",
+                    source: "Saarland University",
+                    description: "Extended PintOS, an educational operating system, as part of OS coursework. Implemented critical OS components including kernel threads, user program loading, a virtual memory system, and a basic file system.",
+                    tech: "Operating Systems, Kernel Threads, Virtual Memory"
+                },
+                {
+                    title: "Micromouse (Autonomous Robot Development)",
+                    source: "Pune University",
+                    description: "Developed an autonomous robot designed to find and traverse the shortest path from one corner of a maze to the center. Designed and developed the Embedded Board using an ATMega microcontroller.",
+                    tech: "Embedded Development, ATMega Microcontroller, C"
+                },
+            ]
+        };
 
-    <main class="max-w-4xl mx-auto px-6 pb-20">
-        <!-- Skills Section - Focused on C++ Performance and Leadership --><section class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-center text-blue-400 border-b border-blue-500/50 pb-2">Core Expertise</h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <!-- C++ Performance and Low-Level --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
-                    <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
-                    <p class="font-semibold">C++ & Low-Latency</p>
-                    <p class="text-sm text-gray-400">Concurrency, Profiling, GTest</p>
+        // --- Utility to map Lucide icon names to components ---
+        const Icon = ({ name, ...props }) => {
+            const LucideIcon = lucide.icons[name];
+            return LucideIcon ? <LucideIcon {...props} /> : null;
+        };
+        
+        // === COMPONENT: Navigation Bar ===
+        const NavBar = ({ currentPage, setPage }) => {
+            const pages = [
+                { name: 'Home', key: 'home' },
+                { name: 'Qualifications', key: 'qualifications' },
+                { name: 'Projects', key: 'projects' },
+                { name: 'Content', key: 'content' },
+            ];
+
+            const getLinkClasses = (key) =>
+                `py-2 px-3 rounded-lg font-medium transition duration-300 ${
+                    currentPage === key
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-blue-300'
+                }`;
+
+            return (
+                <div className="flex justify-center flex-wrap gap-2 md:gap-4 pt-8 border-t border-gray-700/50 mt-8">
+                    {pages.map(page => (
+                        <button
+                            key={page.key}
+                            onClick={() => setPage(page.key)}
+                            className={getLinkClasses(page.key)}
+                        >
+                            {page.name}
+                        </button>
+                    ))}
                 </div>
-                <!-- Distributed Systems and Architecture --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
-                    <i data-lucide="layers-3" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
-                    <p class="font-semibold">Distributed Systems</p>
-                    <p class="text-sm text-gray-400">NFS, Ceph, Paxos, ZFS</p>
+            );
+        };
+
+        // === PAGE: Home View (Initial Content) ===
+        const HomeView = () => (
+            <div className="text-center space-y-4">
+                <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+                    {PROFILE_DATA.name}
+                </h1>
+                <p className="text-2xl md:text-3xl font-light text-blue-300">
+                    {PROFILE_DATA.title}
+                </p>
+
+                <p className="text-lg md:text-xl max-w-2xl mx-auto pt-4 text-gray-400">
+                    {PROFILE_DATA.bio}
+                </p>
+
+                {/* Social Links */}
+                <nav className="flex justify-center space-x-6 pt-6">
+                    {PROFILE_DATA.social.map(link => (
+                        <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-400 transition duration-300 flex items-center space-x-2">
+                            <Icon name={link.icon} className="w-6 h-6" />
+                            <span className="text-lg hidden sm:inline">{link.label}</span>
+                        </a>
+                    ))}
+                </nav>
+                
+                {/* Core Expertise */}
+                <section className="mt-16 pt-8">
+                    <h2 className="text-3xl font-bold mb-8 text-center text-blue-400 border-b border-blue-500/50 pb-2">Core Expertise</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+                        {PROFILE_DATA.expertise.map(item => (
+                            <div key={item.key} className="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                                <Icon name={item.icon} className="w-8 h-8 mb-2 text-blue-400" />
+                                <p className="font-semibold text-lg">{item.title}</p>
+                                <p className="text-sm text-gray-400">{item.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            </div>
+        );
+
+        // === PAGE: Qualifications View ===
+        const QualificationsView = () => (
+            <div className="max-w-3xl mx-auto space-y-12 text-left">
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8">
+                    <Icon name='graduation-cap' className="w-8 h-8 inline mr-3 align-text-bottom" />
+                    Educational Qualifications
+                </h2>
+
+                <div className="space-y-8">
+                    {PROFILE_DATA.education.map((item, index) => (
+                        <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-2xl border-l-4 border-blue-500 hover:bg-gray-700/50 transition duration-300">
+                            <h3 className="text-2xl font-bold text-white">{item.degree}</h3>
+                            <p className="text-lg text-blue-300 mt-1">{item.institution}</p>
+                            <p className="text-sm text-gray-400 mt-2 italic">{item.duration}</p>
+                        </div>
+                    ))}
                 </div>
-                <!-- Kernel and Internals --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
-                    <i data-lucide="cpu" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
-                    <p class="font-semibold">Kernel & Internals</p>
-                    <p class="text-sm text-gray-400">Linux, I/O, LVM, Virtio</p>
-                </div>
-                <!-- Tools and DevOps --><div class="bg-gray-800 p-4 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
-                    <i data-lucide="gauge" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
-                    <p class="font-semibold">Performance Engineering</p>
-                    <p class="text-sm text-gray-400">Valgrind, FIO, Wireshark, CI/CD</p>
+
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8 pt-8 border-t border-gray-700/50">
+                    Certifications & Honors
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {PROFILE_DATA.certifications.map((item, index) => (
+                        <div key={index} className="bg-gray-800 p-5 rounded-xl shadow-lg hover:bg-gray-700/50 transition duration-300">
+                            <p className="text-xl font-semibold text-white">{item.name}</p>
+                            <p className="text-md text-gray-400 mt-1">Issued by {item.source}</p>
+                            <p className="text-sm text-blue-500 mt-1">Year: {item.year}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </section>
-        
-    </main>
+        );
 
-    <!-- Footer --><footer class="py-6 border-t border-gray-700/50 mt-12">
-        <div class="max-w-4xl mx-auto px-6 text-center text-gray-500">
-            <p>&copy; 2025 Supriti Singh. Built for GitHub Pages.</p>
-        </div>
-    </footer>
-    
-    <!-- Initialize Lucide Icons and Image Generation Script --><script>
-        lucide.createIcons();
+        // === PAGE: Projects View ===
+        const ProjectsView = () => (
+            <div className="max-w-4xl mx-auto space-y-12 text-left">
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8">
+                    <Icon name='code' className="w-8 h-8 inline mr-3 align-text-bottom" />
+                    Key Academic Projects
+                </h2>
+
+                <div className="space-y-8">
+                    {PROFILE_DATA.projects.map((item, index) => (
+                        <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-2xl hover:bg-gray-700/50 transition duration-300">
+                            <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                            <p className="text-md text-blue-300 mb-3">{item.source}</p>
+                            <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                            <p className="text-sm text-blue-500 mt-3 font-mono border border-blue-500/50 inline-block px-2 py-1 rounded-full">
+                                Tech Stack: {item.tech}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        // === PAGE: Content View (Substack/YouTube/Readings) ===
+        const ContentView = () => (
+            <div className="max-w-3xl mx-auto space-y-10 text-left">
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8">
+                    <Icon name='book-open' className="w-8 h-8 inline mr-3 align-text-bottom" />
+                    Technical & Personal Content
+                </h2>
+
+                {/* Substack Section */}
+                <div className="bg-gray-800 p-6 rounded-xl shadow-2xl space-y-4">
+                    <div className="flex justify-between items-center border-b border-gray-700 pb-3 mb-3">
+                        <h3 className="text-2xl font-bold text-white flex items-center">
+                            <Icon name='newspaper' className="w-6 h-6 mr-3 text-blue-400" />
+                            Life and Algorithms (Substack)
+                        </h3>
+                        <a href="https://lifeandalgorithms.substack.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center text-sm font-semibold">
+                            Visit Site <Icon name='external-link' className="w-4 h-4 ml-1" />
+                        </a>
+                    </div>
+                    <p className="text-gray-300">
+                        This is where I explore the technical curiosities that drive my engineering work—from filesystems and programming languages to performance optimization—mixed with personal reflections on the everyday human experience.
+                    </p>
+                    <p className="text-sm text-gray-500 italic">
+                        Focuses: C++ Internals, Linux Kernel, Distributed Systems Architecture, Career Growth.
+                    </p>
+                </div>
+
+                {/* YouTube Section Placeholder */}
+                <div className="bg-gray-800 p-6 rounded-xl shadow-2xl space-y-4">
+                    <div className="flex justify-between items-center border-b border-gray-700 pb-3 mb-3">
+                        <h3 className="text-2xl font-bold text-white flex items-center">
+                            <Icon name='video' className="w-6 h-6 mr-3 text-blue-400" />
+                            YouTube Channel (Future Content)
+                        </h3>
+                        <div className="text-gray-500 flex items-center text-sm font-semibold">
+                            Coming Soon
+                        </div>
+                    </div>
+                    <p className="text-gray-400 italic">
+                        Future content planned for the channel will likely include deep-dive video tutorials and whiteboard sessions on C++ performance, concurrent programming patterns, and kernel concepts.
+                    </p>
+                </div>
+            </div>
+        );
+
+        // === MAIN APPLICATION ===
+        const App = () => {
+            const [currentPage, setCurrentPage] = React.useState('home');
+
+            const renderPage = () => {
+                switch (currentPage) {
+                    case 'qualifications':
+                        return <QualificationsView />;
+                    case 'projects':
+                        return <ProjectsView />;
+                    case 'content':
+                        return <ContentView />;
+                    case 'home':
+                    default:
+                        return <HomeView />;
+                }
+            };
+
+            return (
+                <div className="bg-gray-900 text-gray-100 min-h-screen">
+                    <header className="py-12 md:py-16 max-w-5xl mx-auto px-6">
+                        <div className="text-center space-y-4">
+                            {/* PHOTO: Replaced placeholder with direct file reference */}
+                            <img 
+                                src={PHOTO_FILE_PATH} // This constant now holds "supritiPhoto.jpeg"
+                                alt="Supriti Singh - Professional Headshot" 
+                                className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg border-4 border-blue-500 bg-gray-700"
+                            />
+                        </div>
+                        <NavBar currentPage={currentPage} setPage={setCurrentPage} />
+                    </header>
+
+                    <main className="max-w-5xl mx-auto px-6 pb-20 mt-8">
+                        {renderPage()}
+                    </main>
+
+                    <footer className="py-6 border-t border-gray-700/50 mt-12">
+                        <div className="max-w-4xl mx-auto px-6 text-center text-gray-500">
+                            <p>&copy; 2025 Supriti Singh. Built with React for GitHub Pages.</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        // Render the application to the root div
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+        // Initialize Lucide Icons after the component is rendered
+        window.onload = () => {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        };
+
     </script>
 </body>
 </html>
