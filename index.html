@@ -107,6 +107,39 @@
                     description: "Developed an autonomous robot designed to find and traverse the shortest path from one corner of a maze to the center. Designed and developed the Embedded Board using an ATMega microcontroller.",
                     tech: "Embedded Development, ATMega Microcontroller, C"
                 },
+            ],
+            professionalExperience: [ // Renamed data block
+                { 
+                    company: "IONOS (Specialist Software Engineer)",
+                    duration: "04/2021 – Present",
+                    highlights: [
+                        "Spearheaded the Kernel NFS Initiative; delivered production-ready kernel-NFS PoC (ZFS + DRBD + Keepalived) adopted as the architectural baseline.",
+                        "Built Python test suite from scratch for RNBD/RTRS tool, increasing test coverage from 0% to 90%, integrated with GitLab CI.",
+                        "Developed a GTest-based unit testing framework for LVM kernel module/userspace tool, eliminating major system-level CI gaps."
+                    ]
+                },
+                { 
+                    company: "SUSE Linux GmbH (Senior Software Developer)",
+                    duration: "09/2016 – 03/2021",
+                    highlights: [
+                        "Led integration and maintenance of NFS-Ganesha in SUSE Enterprise Storage; contributed upstream to both NFS-Ganesha and Ceph.",
+                        "Wrote the complete Sphinx-based man page for NFS-Ganesha, significantly improving adoption and reducing support churn.",
+                        "Benchmarked NFS-Ganesha vs CephFS vs Samba (FIO & Wireshark), guiding critical storage architecture decisions."
+                    ]
+                },
+                { 
+                    company: "Intel Deutschland GmBH (Linux Kernel Developer)",
+                    duration: "02/2015 – 08/2016",
+                    highlights: [
+                        "Implemented UEFI debugging via JTAG in the Intel debugger; solved UEFI platform issues for key enterprise clients.",
+                        "Owned low-level integration of Intel debug tools with various Linux distributions."
+                    ]
+                }
+            ],
+            hobbies: [
+                { name: "Technical Writing", detail: "Regular contributions to Substack, focusing on clear explanations of complex algorithms and system design." },
+                { name: "Hiking & Nature Walks", detail: "Exploring new trails in the Nuremberg region of Germany." },
+                { name: "Reading", detail: "Focus on non-fiction: history, philosophy, and advanced computer science topics." },
             ]
         };
 
@@ -120,9 +153,11 @@
         const NavBar = ({ currentPage, setPage }) => {
             const pages = [
                 { name: 'Home', key: 'home' },
-                { name: 'Qualifications', key: 'qualifications' },
+                { name: 'Experience', key: 'experience' }, // RENAMED
                 { name: 'Projects', key: 'projects' },
+                { name: 'Qualifications', key: 'qualifications' },
                 { name: 'Content', key: 'content' },
+                { name: 'Hobbies', key: 'hobbies' }, // NEW HOBBIES TAB
             ];
 
             const getLinkClasses = (key) =>
@@ -184,6 +219,32 @@
                         ))}
                     </div>
                 </section>
+            </div>
+        );
+
+        // === PAGE: Professional Experience View (NEW) ===
+        const ExperienceView = () => (
+            <div className="max-w-4xl mx-auto space-y-12 text-left">
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8">
+                    <Icon name='briefcase' className="w-8 h-8 inline mr-3 align-text-bottom" />
+                    Professional Experience
+                </h2>
+
+                <div className="space-y-10">
+                    {PROFILE_DATA.professionalExperience.map((job, index) => (
+                        <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-2xl border-l-4 border-blue-500 hover:bg-gray-700/50 transition duration-300">
+                            <div className="flex justify-between items-start mb-3">
+                                <h3 className="text-2xl font-bold text-white">{job.company}</h3>
+                                <p className="text-sm text-gray-400 italic flex-shrink-0">{job.duration}</p>
+                            </div>
+                            <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2">
+                                {job.highlights.map((highlight, hIndex) => (
+                                    <li key={hIndex} className="text-md">{highlight}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
 
@@ -288,6 +349,35 @@
                 </div>
             </div>
         );
+        
+        // === PAGE: Hobbies View (NEW) ===
+        const HobbiesView = () => (
+            <div className="max-w-3xl mx-auto space-y-10 text-left">
+                <h2 className="text-4xl font-extrabold text-blue-400 text-center mb-8">
+                    <Icon name='heart' className="w-8 h-8 inline mr-3 align-text-bottom" />
+                    Personal Interests & Hobbies
+                </h2>
+                
+                <div className="bg-gray-800 p-6 rounded-xl shadow-2xl space-y-4">
+                    <h3 className="text-2xl font-bold text-blue-300 border-b border-gray-700 pb-2 flex items-center">
+                        <Icon name='feather' className="w-6 h-6 mr-3" />
+                        Interests
+                    </h3>
+                    <dl className="space-y-3">
+                        {PROFILE_DATA.hobbies.map((hobby, index) => (
+                            <div key={index} className="flex items-start space-x-3">
+                                <Icon name='check-circle' className="w-5 h-5 mt-1 text-green-500 flex-shrink-0" />
+                                <div>
+                                    <dt className="font-semibold text-lg text-white">{hobby.name}</dt>
+                                    <dd className="text-gray-400 text-md">{hobby.detail}</dd>
+                                </div>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        );
+
 
         // === MAIN APPLICATION ===
         const App = () => {
@@ -295,12 +385,16 @@
 
             const renderPage = () => {
                 switch (currentPage) {
+                    case 'experience': // ROUTING FOR NEW EXPERIENCE TAB
+                        return <ExperienceView />;
                     case 'qualifications':
                         return <QualificationsView />;
                     case 'projects':
                         return <ProjectsView />;
                     case 'content':
                         return <ContentView />;
+                    case 'hobbies': // ROUTING FOR NEW HOBBIES TAB
+                        return <HobbiesView />;
                     case 'home':
                     default:
                         return <HomeView />;
@@ -311,7 +405,7 @@
                 <div className="bg-gray-900 text-gray-100 min-h-screen">
                     <header className="py-12 md:py-16 max-w-5xl mx-auto px-6">
                         <div className="text-center space-y-4">
-                            {/* PHOTO: Replaced placeholder with direct file reference */}
+                            {/* PHOTO: Direct file reference */}
                             <img 
                                 src={PHOTO_FILE_PATH} // This constant now holds "supritiPhoto.jpeg"
                                 alt="Supriti Singh - Professional Headshot" 
